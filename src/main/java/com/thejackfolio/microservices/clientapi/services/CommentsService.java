@@ -5,14 +5,12 @@ import com.thejackfolio.microservices.clientapi.exceptions.DataBaseOperationExce
 import com.thejackfolio.microservices.clientapi.exceptions.MapperException;
 import com.thejackfolio.microservices.clientapi.exceptions.ValidationException;
 import com.thejackfolio.microservices.clientapi.models.ClientComments;
-import com.thejackfolio.microservices.clientapi.utilities.StringConstants;
 import com.thejackfolio.microservices.clientapi.servicehelpers.IncomingValidation;
+import com.thejackfolio.microservices.clientapi.utilities.StringConstants;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service

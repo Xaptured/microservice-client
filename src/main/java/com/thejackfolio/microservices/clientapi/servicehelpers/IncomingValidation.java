@@ -26,7 +26,7 @@ public class IncomingValidation {
     private void checkUIComments(ClientComments comments) throws ValidationException {
         if(Strings.isNotEmpty(comments.getEmail()) && Strings.isNotBlank(comments.getEmail())
                 && Strings.isNotEmpty(comments.getComments()) && Strings.isNotBlank(comments.getComments())){
-            LOGGER.info("Validation passed for incoming request from UI");
+            LOGGER.info(StringConstants.VALIDATION_PASSED_UI);
         } else {
             LOGGER.error("Validation failed in IncomingValidation.class : checkUIComments for object: {}", comments);
             throw new ValidationException(StringConstants.VALIDATION_ERROR);
@@ -46,7 +46,7 @@ public class IncomingValidation {
                 && Strings.isNotEmpty(comments.getComments()) && Strings.isNotBlank(comments.getComments())
                     && Strings.isNotEmpty(comments.getMessage()) && Strings.isNotBlank(comments.getMessage())){
             if(loggerRequired){
-                LOGGER.info("Validation passed for incoming request from DB");
+                LOGGER.info(StringConstants.VALIDATION_PASSED_DB);
             }
         } else {
             LOGGER.error("Validation failed in IncomingValidation.class : checkDBComments for object: {}", comments);
@@ -59,7 +59,7 @@ public class IncomingValidation {
             for(ClientComments comment : comments){
                 checkDBComments(comment, false);
             }
-            LOGGER.info("Validation passed for incoming request from DB");
+            LOGGER.info(StringConstants.VALIDATION_PASSED_DB);
         } else if(comments == null) {
             LOGGER.error("Validation failed in IncomingValidation.class : checkCommentsListFromDB for object: null");
             throw new ValidationException(StringConstants.VALIDATION_ERROR);

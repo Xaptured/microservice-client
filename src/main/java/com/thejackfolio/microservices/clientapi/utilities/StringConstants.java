@@ -17,5 +17,7 @@ public class StringConstants {
     public static final String MAPPING_ERROR_MODEL_TO_ENTITY = "Error occurred while converting model to entity";
     public static final String MAPPING_ERROR_ENTITY_TO_MODEL = "Error occurred while converting entity to model";
     public static final String VALIDATION_ERROR = "Error occurred while validation";
+    public static final String VALIDATION_PASSED_UI = "Validation passed for incoming request from UI";
+    public static final String VALIDATION_PASSED_DB = "Validation passed for incoming request from DB";
 
 }

@@ -6,6 +6,8 @@ The complete High Level Document will be added in all the repositories to unders
 
 #### Other repositories related to this project:
 
+TheJackFolioParentRepository : https://github.com/Xaptured/TheJackFolioParentRepository
+
 microservice-thejackfolio_db : https://github.com/Xaptured/microservice-thejackfolio_db
 
 microservice-profession : https://github.com/Xaptured/microservice-profession

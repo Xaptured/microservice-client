@@ -16,6 +16,8 @@ microservice-instagram : https://github.com/Xaptured/microservice-instagram
 
 microservice-youtube : https://github.com/Xaptured/microservice-youtube
 
+microservice-instagram-oauth-client : https://github.com/Xaptured/microservice-instagram-oauth-client
+
 If you want to clone this repository and use it in your local, then you can use it directly. No configuration needed.
 
 

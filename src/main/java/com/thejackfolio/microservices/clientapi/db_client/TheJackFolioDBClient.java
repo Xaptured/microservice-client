@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
-@FeignClient(name = "ClientComments-db-client",url = "http://localhost:8080/clients")
+@FeignClient(name = "DATABASE-SERVICE")
 public interface TheJackFolioDBClient {
 
-    @PostMapping("/save-comments")
+    @PostMapping("/clients/save-comments")
     public ResponseEntity<ClientComments> saveComments(@RequestBody ClientComments comments);
 
-    @GetMapping("/get-comments")
+    @GetMapping("/clients/get-comments")
     public ResponseEntity<List<ClientComments>> getComments();
 }

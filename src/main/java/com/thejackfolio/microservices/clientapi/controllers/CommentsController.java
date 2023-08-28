@@ -27,7 +27,7 @@ import java.util.List;
 public class CommentsController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CommentsController.class);
-    private static boolean isRetryEnabled = false;
+    private boolean isRetryEnabled = false;
     @Autowired
     private CommentsService service;
 

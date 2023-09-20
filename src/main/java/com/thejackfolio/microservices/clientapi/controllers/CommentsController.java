@@ -73,7 +73,6 @@ public class CommentsController {
     )
     @GetMapping("/get-comments")
     @Retry(name = "get-comments-db-retry", fallbackMethod = "getCommentsDBRetry")
-    @CrossOrigin(origins = "http://localhost:3000")
     public ResponseEntity<List<ClientComments>> getComments(){
         List<ClientComments> comments = null;
         try{

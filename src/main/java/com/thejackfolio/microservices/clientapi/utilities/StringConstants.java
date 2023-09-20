@@ -17,6 +17,10 @@ public class StringConstants {
     public static final String FALLBACK_MESSAGE = "Something went wrong. Please try again later";
     public static final String RETRY_MESSAGE = "Something went wrong. Doing retry...";
 
+    public static final String USERNAME = "USERNAME";
+    public static final String PASSWORD = "PASSWORD";
+    public static final String ROLE = "ROLE";
+
     private StringConstants(){}
 
 }

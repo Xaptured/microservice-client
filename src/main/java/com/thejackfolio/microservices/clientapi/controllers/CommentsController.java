@@ -38,7 +38,7 @@ public class CommentsController {
     )
     @PostMapping("/save-comments")
     @Retry(name = "save-comments-db-retry", fallbackMethod = "saveCommentsDBRetry")
-    @CrossOrigin(origins = "http://localhost:3000")
+    //@CrossOrigin(origins = "http://localhost:3000")
     public ResponseEntity<ClientComments> saveComment(@RequestBody ClientComments comments){
         ClientComments response = null;
         try{

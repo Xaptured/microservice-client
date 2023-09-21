@@ -20,6 +20,12 @@ public class EmailService {
     @Autowired
     private JavaMailSender javaMailSender;
 
+    public void sendEmailToClient(EmailDetails emailDetails) throws EmailException {
+        String messageBody = StringConstants.RESPONSE_INITIAL + emailDetails.getMsgBody() + StringConstants.RESPONSE_END;
+        emailDetails.setMsgBody(messageBody);
+        sendMail(emailDetails, false);
+    }
+
     public void sendMail(EmailDetails details, boolean isAcknowledgement) throws EmailException {
         try {
             SimpleMailMessage mailMessage = getMailMessage(details, isAcknowledgement);

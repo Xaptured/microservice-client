@@ -4,6 +4,7 @@ import com.thejackfolio.microservices.clientapi.models.ClientComments;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -17,4 +18,10 @@ public interface TheJackFolioDBClient {
 
     @GetMapping("/clients/get-comments")
     public ResponseEntity<List<ClientComments>> getComments();
+
+    @GetMapping("/clients/get-comments/{commentId}")
+    public ResponseEntity<ClientComments> getCommentById(@PathVariable Integer commentId);
+
+    @PostMapping("/clients/update-comments/{commentId}")
+    public ResponseEntity<ClientComments> updateComments(@RequestBody ClientComments comments, @PathVariable Integer commentId);
 }

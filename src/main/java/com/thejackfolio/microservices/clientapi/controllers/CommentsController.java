@@ -1,13 +1,14 @@
 package com.thejackfolio.microservices.clientapi.controllers;
 
 import com.thejackfolio.microservices.clientapi.exceptions.DataBaseOperationException;
+import com.thejackfolio.microservices.clientapi.exceptions.EmailException;
 import com.thejackfolio.microservices.clientapi.exceptions.MapperException;
 import com.thejackfolio.microservices.clientapi.exceptions.ValidationException;
 import com.thejackfolio.microservices.clientapi.models.ClientComments;
-import com.thejackfolio.microservices.clientapi.servicehelpers.IncomingValidation;
+import com.thejackfolio.microservices.clientapi.models.EmailDetails;
 import com.thejackfolio.microservices.clientapi.services.CommentsService;
+import com.thejackfolio.microservices.clientapi.services.EmailService;
 import com.thejackfolio.microservices.clientapi.utilities.StringConstants;
-import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.github.resilience4j.retry.annotation.Retry;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -30,7 +31,8 @@ public class CommentsController {
     private boolean isRetryEnabled = false;
     @Autowired
     private CommentsService service;
-
+    @Autowired
+    private EmailService emailService;
 
     @Operation(
             summary = "Save comments",
@@ -48,7 +50,12 @@ public class CommentsController {
                 isRetryEnabled = true;
             }
             response = service.saveComment(comments);
-        } catch (ValidationException | MapperException | DataBaseOperationException exception){
+            if(response.getMessage().equals(StringConstants.REQUEST_PROCESSED)){
+                EmailDetails details = new EmailDetails();
+                details.setRecipient(response.getEmail());
+                emailService.sendMail(details,true);
+            }
+        } catch (ValidationException | MapperException | DataBaseOperationException | EmailException exception){
             if(comments == null){
                 comments = new ClientComments();
             }

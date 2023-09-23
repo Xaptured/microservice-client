@@ -26,6 +26,9 @@ public class StringConstants {
     public static final String ACKNOWLEDGE_BODY = "Hey! \n\nHope you are doing well. Thanks for reaching out to me. \nPlease wait maximum of one day to get my response. Have a nice day. \n\nThanks \nJack  \n\nThis is an auto triggered email. Please don't reply to this." ;
     public static final String RESPONSE_INITIAL = "Hey! \n\nHope you are doing well. Thanks for reaching out to me. \n";
     public static final String RESPONSE_END = " \n\nThanks \nJack";
+    public static final String ROBO_RESPONSE_INITIAL = "Hey Jack! \n\nHope you are doing well. Please go through these emails which needs to be responded\n";
+    public static final String ROBO_RESPONSE_END = " \n\nThanks \nROBO MAIL";
+    public static final String ROBO_RESPONSE_SUBJECT = "Need to respond to these emails";
     public static final String ACKNOWLEDGE_SUBJECT = "ACKNOWLEDGEMENT";
     public static final String MAIL_SENT_SUCCESSFULLY = "Mail Sent Successfully";
     public static final String ERROR_OCCURRED_SENDING_EMAIL = "Error occurred while sending email";

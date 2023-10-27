@@ -2,6 +2,7 @@ package com.thejackfolio.microservices.clientapi.servicehelpers;
 
 import com.thejackfolio.microservices.clientapi.exceptions.ValidationException;
 import com.thejackfolio.microservices.clientapi.models.ClientComments;
+import com.thejackfolio.microservices.clientapi.models.ClientCredential;
 import com.thejackfolio.microservices.clientapi.utilities.StringConstants;
 import org.apache.logging.log4j.util.Strings;
 import org.slf4j.Logger;
@@ -62,6 +63,43 @@ public class IncomingValidation {
             LOGGER.info(StringConstants.VALIDATION_PASSED_DB);
         } else if(comments == null) {
             LOGGER.error("Validation failed in IncomingValidation.class : checkCommentsListFromDB for object: null");
+            throw new ValidationException(StringConstants.VALIDATION_ERROR);
+        }
+    }
+
+    public void checkCredentialFromUI(ClientCredential credential) throws ValidationException {
+        if(credential == null){
+            LOGGER.error("Validation failed in IncomingValidation.class : checkCredentialFromUI for object: null");
+            throw new ValidationException(StringConstants.VALIDATION_ERROR);
+        }
+        checkUICredential(credential);
+    }
+
+    private void checkUICredential(ClientCredential credential) throws ValidationException {
+        if(Strings.isNotEmpty(credential.getEmail()) && Strings.isNotBlank(credential.getEmail())
+                && Strings.isNotEmpty(credential.getPassword()) && Strings.isNotBlank(credential.getPassword())){
+            LOGGER.info(StringConstants.VALIDATION_PASSED_UI);
+        } else {
+            LOGGER.error("Validation failed in IncomingValidation.class : checkUICredential for object: {}", credential);
+            throw new ValidationException(StringConstants.VALIDATION_ERROR);
+        }
+    }
+
+    public void checkCredentialFromDB(ClientCredential credential) throws ValidationException {
+        if(credential == null){
+            LOGGER.error("Validation failed in IncomingValidation.class : checkCredentialFromDB for object: null");
+            throw new ValidationException(StringConstants.VALIDATION_ERROR);
+        }
+        checkDBCredential(credential);
+    }
+
+    private void checkDBCredential(ClientCredential credential) throws ValidationException {
+        if(Strings.isNotEmpty(credential.getEmail()) && Strings.isNotBlank(credential.getEmail())
+                && Strings.isNotEmpty(credential.getPassword()) && Strings.isNotBlank(credential.getPassword())
+                && Strings.isNotEmpty(credential.getMessage()) && Strings.isNotBlank(credential.getMessage())){
+                LOGGER.info(StringConstants.VALIDATION_PASSED_DB);
+        } else {
+            LOGGER.error("Validation failed in IncomingValidation.class : checkDBCredential for object: {}", credential);
             throw new ValidationException(StringConstants.VALIDATION_ERROR);
         }
     }

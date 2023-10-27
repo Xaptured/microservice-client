@@ -1,6 +1,7 @@
 package com.thejackfolio.microservices.clientapi.db_client;
 
 import com.thejackfolio.microservices.clientapi.models.ClientComments;
+import com.thejackfolio.microservices.clientapi.models.ClientCredential;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,4 +25,10 @@ public interface TheJackFolioDBClient {
 
     @PostMapping("/clients/update-comments/{commentId}")
     public ResponseEntity<ClientComments> updateComments(@RequestBody ClientComments comments, @PathVariable Integer commentId);
+
+    @PostMapping("/clients/save-credentials")
+    public ResponseEntity<ClientCredential> saveClientCredential(@RequestBody  ClientCredential credential);
+
+    @GetMapping("/clients/get-credentials/{email}")
+    public ResponseEntity<ClientCredential> findClientCredential(@PathVariable String email);
 }

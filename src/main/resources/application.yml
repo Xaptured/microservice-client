@@ -19,3 +19,9 @@ resilience4j:
       get-comments-db-retry:
         max-attempts: 3
         wait-duration: 5s
+      save-credential-db-retry:
+        max-attempts: 3
+        wait-duration: 5s
+      get-credential-db-retry:
+        max-attempts: 3
+        wait-duration: 5s

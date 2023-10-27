@@ -6,6 +6,7 @@ import com.thejackfolio.microservices.clientapi.models.ClientComments;
 import com.thejackfolio.microservices.clientapi.models.EmailDetails;
 import com.thejackfolio.microservices.clientapi.services.EmailService;
 import com.thejackfolio.microservices.clientapi.utilities.StringConstants;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/emails")
+@Tag(name = "Email", description = "Email management APIs")
 public class EmailController {
 
     @Autowired
@@ -23,6 +25,10 @@ public class EmailController {
     @Autowired
     private TheJackFolioDBClient dbClient;
 
+    @Operation(
+            summary = "Send email to client",
+            description = "Send email to client and gives the response with a message which defines whether the request is successful or not."
+    )
     @PostMapping("/sendEmail/{commentId}")
     public ResponseEntity<String> sendEmailToClient(@RequestBody EmailDetails emailDetails, @PathVariable Integer commentId){
         try{

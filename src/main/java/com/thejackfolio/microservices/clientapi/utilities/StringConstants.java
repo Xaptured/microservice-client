@@ -32,6 +32,7 @@ public class StringConstants {
     public static final String ACKNOWLEDGE_SUBJECT = "ACKNOWLEDGEMENT";
     public static final String MAIL_SENT_SUCCESSFULLY = "Mail Sent Successfully";
     public static final String ERROR_OCCURRED_SENDING_EMAIL = "Error occurred while sending email";
+    public static final String ERROR_SENDING_EMAIL = "Error sending an email";
 
     public static final String REQUEST_PROCESSED = "Request Processed";
 

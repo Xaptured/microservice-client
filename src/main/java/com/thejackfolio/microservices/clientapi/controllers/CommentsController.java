@@ -1,11 +1,13 @@
 package com.thejackfolio.microservices.clientapi.controllers;
 
+import com.thejackfolio.microservices.clientapi.clients.EmailClient;
 import com.thejackfolio.microservices.clientapi.exceptions.DataBaseOperationException;
 import com.thejackfolio.microservices.clientapi.exceptions.EmailException;
 import com.thejackfolio.microservices.clientapi.exceptions.MapperException;
 import com.thejackfolio.microservices.clientapi.exceptions.ValidationException;
 import com.thejackfolio.microservices.clientapi.models.ClientComments;
 import com.thejackfolio.microservices.clientapi.models.EmailDetails;
+import com.thejackfolio.microservices.clientapi.models.EmailResponse;
 import com.thejackfolio.microservices.clientapi.services.CommentsService;
 import com.thejackfolio.microservices.clientapi.services.EmailService;
 import com.thejackfolio.microservices.clientapi.utilities.StringConstants;
@@ -33,6 +35,8 @@ public class CommentsController {
     private CommentsService service;
     @Autowired
     private EmailService emailService;
+    @Autowired
+    private EmailClient client;
 
     @Operation(
             summary = "Save comments",
@@ -53,14 +57,22 @@ public class CommentsController {
             if(response.getMessage().equals(StringConstants.REQUEST_PROCESSED)){
                 EmailDetails details = new EmailDetails();
                 details.setRecipient(response.getEmail());
-                emailService.sendMail(details,true);
+                ResponseEntity<EmailResponse> emailResponseResponseEntity = client.sendAcknowledgementEmailToClient(details);
+                EmailResponse emailResponse = emailResponseResponseEntity.getBody();
+                if(!emailResponse.getMessage().equals(StringConstants.MAIL_SENT_SUCCESSFULLY)) {
+                    throw new EmailException(emailResponse.getMessage());
+                }
             }
-        } catch (ValidationException | MapperException | DataBaseOperationException | EmailException exception){
+        } catch (ValidationException | MapperException | DataBaseOperationException exception){
             if(comments == null){
                 comments = new ClientComments();
             }
             comments.setMessage(exception.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(comments);
+        } catch (EmailException exception) {
+            LOGGER.error("Error occurred while sending acknowledgement email to {}", comments.getEmail());
+            response.setMessage(StringConstants.ERROR_SENDING_EMAIL);
+            return ResponseEntity.status(HttpStatus.CREATED).body(response);
         }
         isRetryEnabled = false;
         return ResponseEntity.status(HttpStatus.CREATED).body(response);

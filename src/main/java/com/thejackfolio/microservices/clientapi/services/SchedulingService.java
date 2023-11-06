@@ -1,5 +1,6 @@
 package com.thejackfolio.microservices.clientapi.services;
 
+import com.thejackfolio.microservices.clientapi.clients.EmailClient;
 import com.thejackfolio.microservices.clientapi.exceptions.DataBaseOperationException;
 import com.thejackfolio.microservices.clientapi.exceptions.EmailException;
 import com.thejackfolio.microservices.clientapi.exceptions.MapperException;
@@ -25,6 +26,8 @@ public class SchedulingService {
     private CommentsService service;
     @Autowired
     private EmailService emailService;
+    @Autowired
+    private EmailClient client;
 
     @Scheduled(cron = "0 10 16 * * *")
     public void executeNonRespondedMails(){
@@ -37,8 +40,8 @@ public class SchedulingService {
             details.setMsgBody(completeMessage);
             details.setRecipient(PropertiesReader.getProperty(StringConstants.SENDER));
             details.setSubject(StringConstants.ROBO_RESPONSE_SUBJECT);
-            emailService.sendMail(details, false);
-        } catch (ValidationException | MapperException | DataBaseOperationException | EmailException exception){
+            client.sendRoboEmailToMe(details);
+        } catch (ValidationException | MapperException | DataBaseOperationException exception){
             LOGGER.info(exception.getMessage());
         }
     }

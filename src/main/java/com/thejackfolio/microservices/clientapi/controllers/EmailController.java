@@ -1,6 +1,6 @@
 package com.thejackfolio.microservices.clientapi.controllers;
 
-import com.thejackfolio.microservices.clientapi.db_client.TheJackFolioDBClient;
+import com.thejackfolio.microservices.clientapi.clients.TheJackFolioDBClient;
 import com.thejackfolio.microservices.clientapi.exceptions.EmailException;
 import com.thejackfolio.microservices.clientapi.models.ClientComments;
 import com.thejackfolio.microservices.clientapi.models.EmailDetails;
@@ -8,8 +8,6 @@ import com.thejackfolio.microservices.clientapi.services.EmailService;
 import com.thejackfolio.microservices.clientapi.utilities.StringConstants;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,6 +1,6 @@
 package com.thejackfolio.microservices.clientapi.services;
 
-import com.thejackfolio.microservices.clientapi.db_client.TheJackFolioDBClient;
+import com.thejackfolio.microservices.clientapi.clients.TheJackFolioDBClient;
 import com.thejackfolio.microservices.clientapi.exceptions.DataBaseOperationException;
 import com.thejackfolio.microservices.clientapi.exceptions.MapperException;
 import com.thejackfolio.microservices.clientapi.exceptions.ValidationException;

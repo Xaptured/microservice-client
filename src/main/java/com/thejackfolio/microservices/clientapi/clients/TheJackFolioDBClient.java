@@ -1,4 +1,4 @@
-package com.thejackfolio.microservices.clientapi.db_client;
+package com.thejackfolio.microservices.clientapi.clients;
 
 import com.thejackfolio.microservices.clientapi.models.ClientComments;
 import com.thejackfolio.microservices.clientapi.models.ClientCredential;

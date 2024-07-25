@@ -25,3 +25,9 @@ resilience4j:
       get-credential-db-retry:
         max-attempts: 3
         wait-duration: 5s
+      save-joiner-db-retry:
+        max-attempts: 3
+        wait-duration: 5s
+      update-joiner-db-retry:
+        max-attempts: 3
+        wait-duration: 5s

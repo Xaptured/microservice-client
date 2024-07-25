@@ -3,6 +3,7 @@ package com.thejackfolio.microservices.clientapi.servicehelpers;
 import com.thejackfolio.microservices.clientapi.exceptions.ValidationException;
 import com.thejackfolio.microservices.clientapi.models.ClientComments;
 import com.thejackfolio.microservices.clientapi.models.ClientCredential;
+import com.thejackfolio.microservices.clientapi.models.Joiner;
 import com.thejackfolio.microservices.clientapi.utilities.StringConstants;
 import org.apache.logging.log4j.util.Strings;
 import org.slf4j.Logger;
@@ -100,6 +101,23 @@ public class IncomingValidation {
                 LOGGER.info(StringConstants.VALIDATION_PASSED_DB);
         } else {
             LOGGER.error("Validation failed in IncomingValidation.class : checkDBCredential for object: {}", credential);
+            throw new ValidationException(StringConstants.VALIDATION_ERROR);
+        }
+    }
+
+    public void checkJoinerFromUI(Joiner joiner) throws ValidationException {
+        if(joiner == null){
+            LOGGER.error("Validation failed in IncomingValidation.class : checkJoinerFromUI for object: null");
+            throw new ValidationException(StringConstants.VALIDATION_ERROR);
+        }
+        checkUIJoiner(joiner);
+    }
+
+    private void checkUIJoiner(Joiner joiner) throws ValidationException {
+        if(Strings.isNotEmpty(joiner.getEmail()) && Strings.isNotBlank(joiner.getEmail())){
+            LOGGER.info(StringConstants.VALIDATION_PASSED_UI);
+        } else {
+            LOGGER.error("Validation failed in IncomingValidation.class : checkUIJoiner for object: {}", joiner);
             throw new ValidationException(StringConstants.VALIDATION_ERROR);
         }
     }

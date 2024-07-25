@@ -72,7 +72,7 @@ public class CommentsController {
         } catch (EmailException exception) {
             LOGGER.error("Error occurred while sending acknowledgement email to {}", comments.getEmail());
             response.setMessage(StringConstants.ERROR_SENDING_EMAIL);
-            return ResponseEntity.status(HttpStatus.CREATED).body(response);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
         }
         isRetryEnabled = false;
         return ResponseEntity.status(HttpStatus.CREATED).body(response);

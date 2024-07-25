@@ -29,7 +29,7 @@ public class WebSecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(mvc.pattern("/actuator/**")).hasRole(ROLE)
-                        .requestMatchers(mvc.pattern("/emails/**")).hasRole(ROLE)
+//                        .requestMatchers(mvc.pattern("/emails/**")).hasRole(ROLE)
                         .anyRequest().permitAll()
                 )
                 .formLogin(Customizer.withDefaults())

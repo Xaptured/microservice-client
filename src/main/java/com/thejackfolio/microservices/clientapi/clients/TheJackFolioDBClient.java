@@ -2,6 +2,7 @@ package com.thejackfolio.microservices.clientapi.clients;
 
 import com.thejackfolio.microservices.clientapi.models.ClientComments;
 import com.thejackfolio.microservices.clientapi.models.ClientCredential;
+import com.thejackfolio.microservices.clientapi.models.Joiner;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,4 +32,10 @@ public interface TheJackFolioDBClient {
 
     @GetMapping("/clients/get-credentials/{email}")
     public ResponseEntity<ClientCredential> findClientCredential(@PathVariable String email);
+
+    @PostMapping("/clients/save-joiner")
+    public ResponseEntity<Joiner> saveJoiner(@RequestBody Joiner joiner);
+
+    @PostMapping("/clients/update-joiner/{email}")
+    public ResponseEntity<String> updateJoiner(@PathVariable String email);
 }

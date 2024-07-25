@@ -18,4 +18,10 @@ public interface EmailClient {
 
     @PostMapping("/email/send-response-email")
     public ResponseEntity<EmailResponse> sendResponseEmailToClient(@RequestBody EmailDetails details);
+
+    @PostMapping("/email/send-onboarding-email")
+    public ResponseEntity<EmailResponse> sendOnboardingEmailToClient(@RequestBody EmailDetails details);
+
+    @PostMapping("/email/send-onboarding-complete-email")
+    public ResponseEntity<EmailResponse> sendOnboardingCompleteEmailToClient(@RequestBody EmailDetails details);
 }

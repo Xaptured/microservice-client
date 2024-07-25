@@ -18,8 +18,8 @@ public class EmailService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(EmailService.class);
     private static final String SENDER_EMAIL = PropertiesReader.getProperty(StringConstants.SENDER);
-    @Autowired
-    private JavaMailSender javaMailSender;
+//    @Autowired
+//    private JavaMailSender javaMailSender;
     @Autowired
     private EmailClient client;
 

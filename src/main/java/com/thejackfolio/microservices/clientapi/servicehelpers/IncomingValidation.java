@@ -91,7 +91,7 @@ public class IncomingValidation {
             LOGGER.error("Validation failed in IncomingValidation.class : checkCredentialFromDB for object: null");
             throw new ValidationException(StringConstants.VALIDATION_ERROR);
         }
-        checkDBCredential(credential);
+        // checkDBCredential(credential);
     }
 
     private void checkDBCredential(ClientCredential credential) throws ValidationException {

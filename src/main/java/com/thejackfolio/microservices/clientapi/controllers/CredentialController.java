@@ -1,6 +1,7 @@
 package com.thejackfolio.microservices.clientapi.controllers;
 
 import com.thejackfolio.microservices.clientapi.exceptions.DataBaseOperationException;
+import com.thejackfolio.microservices.clientapi.exceptions.EmailException;
 import com.thejackfolio.microservices.clientapi.exceptions.MapperException;
 import com.thejackfolio.microservices.clientapi.exceptions.ValidationException;
 import com.thejackfolio.microservices.clientapi.models.ClientCredential;
@@ -43,7 +44,12 @@ public class CredentialController {
                 isRetryEnabled = true;
             }
             response = service.saveCredential(credential);
-            // TODO: Send email to client that successfully registered
+        } catch (EmailException exception){
+            if(credential == null){
+                credential = new ClientCredential();
+            }
+            credential.setMessage(StringConstants.EMAIL_EXIST);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(credential);
         } catch (ValidationException | MapperException | DataBaseOperationException exception){
             if(credential == null){
                 credential = new ClientCredential();
@@ -79,6 +85,10 @@ public class CredentialController {
                 isRetryEnabled = true;
             }
             credential = service.getCredential(email);
+        } catch (EmailException exception){
+            credential = new ClientCredential();
+            credential.setMessage(exception.getMessage());
+            return ResponseEntity.status(HttpStatus.OK).body(credential);
         } catch (ValidationException | MapperException | DataBaseOperationException exception){
             credential = new ClientCredential();
             credential.setMessage(exception.getMessage());

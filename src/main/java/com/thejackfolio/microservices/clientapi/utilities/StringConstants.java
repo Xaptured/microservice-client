@@ -32,6 +32,9 @@ public class StringConstants {
     public static final String ACKNOWLEDGE_SUBJECT = "ACKNOWLEDGEMENT";
     public static final String MAIL_SENT_SUCCESSFULLY = "Mail Sent Successfully";
     public static final String DUPLICATE_EMAIL = "Duplicate email";
+    public static final String EMAIL_EXIST = "Email already exist";
+    public static final String USER_NOT_FOUND = "Username not found";
+    public static final String EMAIL_NOT_PRESENT = "Email not present in Database";
     public static final String ERROR_OCCURRED_SENDING_EMAIL = "Error occurred while sending email";
     public static final String ERROR_SENDING_EMAIL = "Error sending an email";
 

@@ -49,7 +49,7 @@ public class CredentialController {
                 credential = new ClientCredential();
             }
             credential.setMessage(StringConstants.EMAIL_EXIST);
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(credential);
+            return ResponseEntity.status(HttpStatus.OK).body(credential);
         } catch (ValidationException | MapperException | DataBaseOperationException exception){
             if(credential == null){
                 credential = new ClientCredential();

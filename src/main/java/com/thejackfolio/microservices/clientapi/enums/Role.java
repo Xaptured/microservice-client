@@ -8,5 +8,5 @@ package com.thejackfolio.microservices.clientapi.enums;
 
 public enum Role {
 
-    PARTICIPANT, ORGANIZER, ADMIN;
+    PARTICIPANT, ORGANIZER, ADMIN, AUDIENCE;
 }

@@ -1,3 +1,7 @@
+[![Build and Test Java Spring Boot Application](https://github.com/Xaptured/microservice-client/actions/workflows/build-and-test.yml/badge.svg)](https://github.com/Xaptured/microservice-client/actions/workflows/build-and-test.yml)
+
+[![Dependabot Updates](https://github.com/Xaptured/microservice-client/actions/workflows/dependabot/dependabot-updates/badge.svg)](https://github.com/Xaptured/microservice-client/actions/workflows/dependabot/dependabot-updates)
+
 # microservice-client
 
 This microservice is used to get the client related information like comments and details which are being processed and sent to database layer(microservice-thejackfolio_db). 
